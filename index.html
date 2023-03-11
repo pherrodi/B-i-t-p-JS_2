@@ -34,8 +34,6 @@
                         type="button" role="tab" aria-controls="v-pills-bai3" aria-selected="false">Bài 3</button>
                     <button class="nav-link" id="v-pills-bai4-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bai4"
                         type="button" role="tab" aria-controls="v-pills-bai4" aria-selected="false">Bài 4</button>
-                    <button class="nav-link" id="v-pills-bai5-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bai5"
-                        type="button" role="tab" aria-controls="v-pills-bai5" aria-selected="false">Bài 5</button>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-bai1" role="tabpanel"
@@ -119,7 +117,7 @@
 
 
                                 <button type="button" class="btn btn-primary my-2 rounded-5 d-block w-25"
-                                    id="btn-tien-dien">Tính trung bình</button>
+                                    id="btn-tien-dien">Tính Tiền Điện</button>
                                 <div class="border border-primary bg-light w-80 p-3 mx-auto" id="ket-qua2">
                                     <i class="fa fa-hand-point-right"></i>
                                 </div>
@@ -134,25 +132,44 @@
                         tabindex="0">
                         <div class="card text-bg-light mb-3">
                             <div class="card-header">
-                                <h3>Quy đổi tiền</h3>
+                                <h3>Tính Thuế Thu Nhập Cá Nhân</h3>
                             </div>
                             <div class="card-body">
                                 <h4>Gợi Ý</h4>
 
-                                <p>Kiến thức áp dụng:</p>
+
                                 <ul>
-                                    <li>Áp dụng kiến thức như bài 1 và 2</li>
-                                    <li>Giá USD mặc định 1 USD = 23500</li>
-                                    <li>Có thể dùng thêm NumberFormat để số tiền hiển thị đẹp hơn : NumberFormat </li>
-                                    <li>Vd: new Intl.NumberFormat('vn-VN').format(23500);</li>
+                                    <li>Tổng thu nhập năm các bạn tự nhập thêm. Giả sử 1 tháng thu nhập 10tr thì 1 năm
+                                        sẽ là 10 x 12 = 120tr => các bạn sẽ nhập 120000000</li>
+                                    <li>Demo hiện tại đang tính % thuế theo điều kiện mà thu nhập chịu thuế rơi vào. Vd:
+                                        thu nhập chịu thuế là 110tr thì tính 10% của 110tr => 110tr * 0.1</li>
+                                    <li>Do đề bài không ghi rõ yêu cầu tính thuế nên cũng có thể tính theo cách chia ra
+                                        từng đoạn thuế giống bài tính tiền grab. Vd: 110tr => 60tr *0.05 + (110tr-60tr)
+                                        * 0.1 </li>
+                                    <li>Sử dụng input có type number thì khi nhập 120000000, có thể nhập ngắn gọn thành
+                                        120e+6</li>
+                                    <li>Đối với các con số hàng triệu có nhiều số 0, có thể viết ngắn gọn trong code như
+                                        sau:<br>
+                                        4tr => 4000000 => 4e+6</li>
+                                    <li>Dùng NumberFormat để số tiền hiển thị đẹp hơn: NumberFormat</li>
                                 </ul>
                             </div>
                             <div class="card-footer">
-                                <input type="number" placeholder="Nhập số tiền"
-                                    class="border border-primary border-3 rounded-2  mx-2 form-control" id="so-tien">
+                                <div class="row">
+                                    <input type="text" placeholder="Nhập họ tên"
+                                        class="border border-primary border-3 rounded-2  mx-2  col-3"
+                                        id="ho-ten-thuetn">
+                                    <input type="number" placeholder="Tổng thu nhập năm"
+                                        class="border border-primary border-3 rounded-2  mx-2  col-3"
+                                        id="tong-thu-nhap">
+                                    <input type="number" placeholder="Số người phụ thuộc"
+                                        class="border border-primary border-3 rounded-2  mx-2  col-3"
+                                        id="so-nguoi-phu-thuoc">
+                                </div>
+
 
                                 <button type="button" class="btn btn-primary my-2 rounded-5 d-block"
-                                    id="btn-doi-tien">Quy Đổi Tiền</button>
+                                    id="btn-tinh-thue">Tính Tiền Thuế</button>
                                 <div class="border border-primary bg-light w-80 p-3 mx-auto " id="ket-qua3">
                                     <i class="fa fa-hand-point-right"></i>
                                 </div>
@@ -163,61 +180,56 @@
                         tabindex="0">
                         <div class="card text-bg-light mb-3">
                             <div class="card-header">
-                                <h3>Tính diện tích , chu vi hình chữ nhật</h3>
+                                <h3>Tính tiền cáp</h3>
                             </div>
                             <div class="card-body">
                                 <h4>Gợi Ý</h4>
 
                                 <p>Kiến thức áp dụng:</p>
                                 <ul>
-                                    <li>Áp dụng các kiến thức như các bài trước</li>
-                                    <li>Diện tích : dài x rộng</li>
-                                    <li>Chu vi : (dài+rộng)*2</li>
+                                    <li>Sử dụng event onchange của dropdown để xử lý ẩn hiện cho ô nhập số kết nối khi
+                                        chọn loại khách hàng: Onchange</li>
+                                    <li>Đối với loại khách hàng Doanh Nghiệp, tổng 10 kết nối đầu là 75$ <br>=>> đây là
+                                        giá trọn gói, nếu doanh nghiệp lắp đặt số kết nối nhỏ hơn 10 thì vẫn phải đóng
+                                        75$.
+                                        <br>Vd: 6 kết nối thì vẫn sẽ cộng 75$ vào tổng tiền.
+                                        <br>
+                                    </li>
+
 
                                 </ul>
                             </div>
                             <div class="card-footer">
-                                <input type="number" placeholder="Nhập chiều dài"
-                                    class="border border-primary border-3 rounded-2  mx-2" id="chieu-dai">
-                                <input type="number" placeholder="Nhập chiều rộng"
-                                    class="border border-primary border-3 rounded-2 mx-2" id="chieu-rong">
+                                <div class="row">
+                                    <select id="loai-kh" name="choices"
+                                        class="border border-primary border-3 rounded-2 mx-2 col-3">
+                                        <option value="loaikh">Chọn loại khách hàng</option>
+                                        <option value="nd">Nhà Dân</option>
+                                        <option value="dn">Doanh Nghiệp</option>
+
+                                    </select>
+                                    <input type="" placeholder="Nhập mã khách hàng"
+                                        class="border border-primary border-3 rounded-2  mx-2  col-3" id="ma-kh">
+
+
+                                    <input type="number" placeholder="Số kênh cao cấp"
+                                        class="border border-primary border-3 rounded-2  mx-2  col-3" id="so-kenh">
+                                    <input type="number" placeholder="Số kết nối"
+                                        class="border border-primary border-3 rounded-2  mx-2 my-2 col-3"
+                                        style="display : none;" id="so-ket-noi">
+                                </div>
                                 <button type="button" class="btn btn-primary my-2 rounded-5 d-block"
-                                    id="btn-tinh-cv-dt">Tính</button>
+                                    id="btn-tinh-tien-cap">Tính Tiền Cáp</button>
                                 <div class="border border-primary bg-light w-80 p-3 mx-auto " id="ket-qua4">
                                     <i class="fa fa-hand-point-right"></i>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-bai5" role="tabpanel" aria-labelledby="v-pills-bai5-tab"
-                        tabindex="0">
-                        <div class="card text-bg-light mb-3">
-                            <div class="card-header">
-                                <h3>Tính Tổng 2 ký số</h3>
-                            </div>
-                            <div class="card-body">
-                                <h4>Gợi Ý</h4>
 
-                                <p>Kiến thức áp dụng:</p>
-                                <ul>
-                                    <li>Áp dụng kiến thức như demo tổng 3 ký số trên lớp</li>
-
-                                </ul>
-                            </div>
-                            <div class="card-footer">
-                                <input type="number" placeholder="Nhập số có 2 chữ số "
-                                    class="border border-primary border-3 rounded-2  mx-2 form-control" id="nhap-so">
-
-                                <button type="button" class="btn btn-primary my-2 rounded-5 d-block"
-                                    id="btn-tinh-tong">Tính tổng</button>
-                                <div class="border border-primary bg-light w-80 p-3 mx-auto " id="ket-qua5">
-                                    <i class="fa fa-hand-point-right"></i>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         </div>
 
